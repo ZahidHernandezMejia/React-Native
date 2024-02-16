@@ -1,7 +1,8 @@
 import React from 'react';
-import { TiposBasicos } from './Typescript/TiposBasicos';
-import { ObjetosLiterales } from './Typescript/ObjetosLiterales';
-import { Funciones } from './Typescript/Funciones';
+// import { TiposBasicos } from './Typescript/TiposBasicos';
+// import { ObjetosLiterales } from './Typescript/ObjetosLiterales';
+// import { Funciones } from './Typescript/Funciones';
+import { Contador } from './Components/Contador';
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <hr />
       {/* <TiposBasicos/> */}
       {/* <ObjetosLiterales/> */}
-      <Funciones/>
+      {/* <Funciones/> */}
+      <Contador/>
     </div>
   );
 }
