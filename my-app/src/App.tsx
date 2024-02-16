@@ -3,7 +3,8 @@ import React from 'react';
 // import { ObjetosLiterales } from './Typescript/ObjetosLiterales';
 // import { Funciones } from './Typescript/Funciones';
 // import { Contador } from './Components/Contador';
-import { ContadorConHook } from './components/ContadorConHook';
+// import { ContadorConHook } from './components/ContadorConHook';
+import { Login } from './components/Login';
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
       {/* <ObjetosLiterales/> */}
       {/* <Funciones/> */}
       {/* <Contador/> */}
-      <ContadorConHook/>
+      {/* <ContadorConHook/> */}
+      <Login/>
     </div>
   );
 }
