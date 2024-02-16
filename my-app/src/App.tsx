@@ -2,7 +2,8 @@ import React from 'react';
 // import { TiposBasicos } from './Typescript/TiposBasicos';
 // import { ObjetosLiterales } from './Typescript/ObjetosLiterales';
 // import { Funciones } from './Typescript/Funciones';
-import { Contador } from './Components/Contador';
+// import { Contador } from './Components/Contador';
+import { ContadorConHook } from './components/ContadorConHook';
 
 function App() {
   return (
@@ -12,7 +13,8 @@ function App() {
       {/* <TiposBasicos/> */}
       {/* <ObjetosLiterales/> */}
       {/* <Funciones/> */}
-      <Contador/>
+      {/* <Contador/> */}
+      <ContadorConHook/>
     </div>
   );
 }
