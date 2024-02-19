@@ -6,9 +6,14 @@ interface AuthState {
   username: string;
   nombre: string;
 }
+
+type LoginPayload = {
+  username: string;
+  nombre: string;
+};
 // La accion usamos un tipo de typescript porque no se expanden ,son planos a comparacion de una interfaz
 // Las acciones tienen 2 propiedades el tipo y payload
-type AuthAction = { type: "logout" };
+type AuthAction = { type: "logout" } | { type: "login"; payload: LoginPayload };
 
 // Como va a ser mi estado inicial
 const initalState = {
@@ -32,6 +37,17 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
         nombre: "",
         username: "",
       };
+    case "login":
+      const { nombre, username } = action.payload;
+      return {
+        validando: false,
+        token: "123",
+        nombre: nombre,
+        username,
+        // nombre:action.payload.nombre,
+        // username: action.payload.username
+        // ...state
+      };
     default:
       return state;
   }
@@ -39,19 +55,38 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
 
 // El useReducer cuando hay un estado mas elaborado y puede cambiar de distintas maneras
 export const Login = () => {
-  const [{validando}, dispatch] = useReducer(authReducer, initalState);
-//   Para disparar efectos secundarios , cuando no le ponemos dependencia solo se ejecuta 
-//   una vez cuando se renderea por primera vez el componente
+  const [{ validando, token, nombre }, dispatch] = useReducer(
+    authReducer,
+    initalState
+  );
+  //   Para disparar efectos secundarios , cuando no le ponemos dependencia solo se ejecuta
+  //   una vez cuando se renderea por primera vez el componente
   useEffect(() => {
     setTimeout(() => {
       dispatch({ type: "logout" });
     }, 1500);
   }, []);
 
+  const login=()=>{
+    dispatch({
+        type:'login',
+        payload:{
+            nombre:'Zahid',
+            username:'zahidlol',
+        }
+    })
+  }
+
+
+  const logout=()=>{
+    dispatch({
+        type:'logout'
+    })
+  }
+  
   if (validando) {
     return (
       <>
-        <h3>Login</h3>
         <div className="alert alert-info">Validando...</div>
       </>
     );
@@ -59,12 +94,18 @@ export const Login = () => {
 
   return (
     <>
-      <div className="alert alert-danger">No autenticado</div>
-      <div className="alert alert-success">Autenticado :D</div>
+      <h3>Login</h3>
+      {token ? (
+        <div className="alert alert-success">Autenticado como:{nombre}</div>
+      ) : (
+        <div className="alert alert-danger">No autenticado</div>
+      )}
 
-      <button className="btn btn-primary">Login</button>
-
-      <button className="btn btn-danger">Logout</button>
+      {token ? (
+        <button className="btn btn-danger" onClick={logout}>Logout</button>
+      ) : (
+        <button className="btn btn-primary" onClick={login}>Login</button>
+      )}
     </>
   );
 };
