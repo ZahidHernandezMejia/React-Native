@@ -11,10 +11,26 @@ export const Usuarios = () => {
       .get<ReqRespListado>("/users")
       .then((resp) => {
         console.log(resp.data.data);
+        setUsuarios(resp.data.data);  
       })
       .catch(console.log);
   }, []);
 
+  const renderItem=({id,first_name,last_name,email,avatar}:Usuario)=>{
+    return (
+      <tr key={id.toString()}>
+        <td>
+          <img style={{
+            width:45,
+            borderRadius:100,
+            }}
+          src={avatar} alt={first_name} />
+        </td>
+        <td>{first_name} {last_name}</td>
+        <td>{email}</td>
+      </tr>
+    )
+  }
   return (
     <>
       <h3>Usuarios</h3>
@@ -27,12 +43,16 @@ export const Usuarios = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Yoyo</td>
-            <td>Fuck</td>
-          </tr>
+          {
+            usuarios.map( renderItem )
+            // usuarios.map((usuario:Usuario)=>renderItem(usuario))
+          }
         </tbody>
       </table>
+      <button
+      className="btn btn-primary">
+        Siguientes
+      </button>
     </>
   );
 };
