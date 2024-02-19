@@ -1,11 +1,14 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { reqResApi } from "../api/reqRes";
+import { ReqRespListado, Usuario } from '../interfaces/reqRes';
 
 export const Usuarios = () => {
+  const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+
   // async y await no debe de ir en un useEffect
   useEffect(() => {
     reqResApi
-      .get("/users")
+      .get<ReqRespListado>("/users")
       .then((resp) => {
         console.log(resp.data.data);
       })
