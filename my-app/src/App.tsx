@@ -5,7 +5,8 @@ import React from 'react';
 // import { Contador } from './Components/Contador';
 // import { ContadorConHook } from './components/ContadorConHook';
 // import { Login } from './Components/Login';
-import { Usuarios } from './components/Usuarios';
+// import { Usuarios } from './components/Usuarios';
+import { Formularios } from './components/Formularios';
 function App() {
   return (
     <div className="m-2">
@@ -17,7 +18,8 @@ function App() {
       {/* <Contador/> */}
       {/* <ContadorConHook/> */}
       {/* <Login/> */}
-      <Usuarios/>
+      {/* <Usuarios/> */}
+      <Formularios/>
     </div>
   );
 }
