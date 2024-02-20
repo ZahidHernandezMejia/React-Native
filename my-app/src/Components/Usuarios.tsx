@@ -4,7 +4,7 @@ import { useUsuarios } from '../hooks/useUsuarios';
 //CustomHook
 export const Usuarios = () => {
   // usamos el custom hook 
-  const {usuarios,cargarUsuarios}=useUsuarios();
+  const {usuarios,paginaAnterior,paginaSiguiente}=useUsuarios();
 
 
   const renderItem = ({
@@ -51,11 +51,11 @@ export const Usuarios = () => {
           }
         </tbody>
       </table>
-      <button className="btn btn-primary" onClick={cargarUsuarios}>
+      <button className="btn btn-primary" onClick={paginaAnterior}>
         Anteriores
       </button>
       &nbsp;
-      <button className="btn btn-primary" onClick={cargarUsuarios}>
+      <button className="btn btn-primary" onClick={paginaSiguiente}>
         Siguientes
       </button>
     </>

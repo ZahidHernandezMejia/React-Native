@@ -23,7 +23,7 @@ export const useUsuarios = () => {
       // cargarUsuarios();
     // };
     const cargarUsuarios = async () => {
-      const resp = await reqResApi.get<ReqRespListado>("/users", {
+        const resp = await reqResApi.get<ReqRespListado>("/users", {
         params: {
           // :Objeto.Valor
           page: paginaRef.current,
@@ -32,17 +32,33 @@ export const useUsuarios = () => {
   
       if (resp.data.data.length > 0) {
         setUsuarios(resp.data.data);
-        paginaRef.current++;
-        console.log(paginaRef.current);
+        console.log("Entra al set"+paginaRef.current);
       } else {
+        // Se disminuye la pagina para que no vaya a una pagina donde no tiene registros 
+        paginaRef.current--;
         alert("No hay mas usuarios");
+        console.log("Entro al else "+paginaRef.current);
       }
       
     };
 
 
+    const paginaSiguiente=()=> {
+        paginaRef.current++;
+        cargarUsuarios();
+    }
+
+    const paginaAnterior=()=> {
+        if(paginaRef.current>1){
+            paginaRef.current--;
+            cargarUsuarios();
+        }
+    }
+
     return {
         usuarios,
-        cargarUsuarios
+        // cargarUsuarios
+        paginaSiguiente,
+        paginaAnterior
     }
 }
